@@ -3,7 +3,7 @@
 Plan and per-task test plans: [`tasks/plan.md`](plan.md). Spec: [`SPEC.md`](../SPEC.md).
 
 ## Phase 1: Evals and baseline
-- [ ] Task 1: Fixture repo with a multi-file, call-path-changing patch
+- [x] Task 1: Fixture repo with a multi-file, call-path-changing patch (uses the runner's `.eval/working-tree.patch` convention, applied as uncommitted changes)
 - [ ] Task 2: Tier 3 eval case, skill skeleton, and baseline run
 - [ ] Task 3: Plugin eval pair (fires / stays quiet) and baseline run
 
