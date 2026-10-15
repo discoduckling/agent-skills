@@ -47,7 +47,7 @@ Add a new `explaining-diffs` skill that writes a plain-language explainer of a f
 
 ### Phase 4: Local config and release
 
-- [ ] Task 11: Point the user's `~/.claude/CLAUDE.md` at the vault folder **(ask first)**
+- [x] Task 11: Point the user's `~/.claude/CLAUDE.md` at the vault folder **(ask first)** — approved and added
 - [x] Task 12: Bump manifests to 0.6.15
 
 ### Checkpoint: Complete
