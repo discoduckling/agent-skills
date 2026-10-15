@@ -41,7 +41,7 @@ Add a new `explaining-diffs` skill that writes a plain-language explainer of a f
 
 - [x] Task 6: `/explain-diff` command (three directories)
 - [x] Task 7: `/build` wiring (three directories) and `incremental-implementation` pointer
-- [ ] Task 8: Pre-PR pointer in `git-workflow-and-versioning`
+- [x] Task 8: Pre-PR pointer in `git-workflow-and-versioning`
 - [ ] Task 9: Catalog listings in README.md and CLAUDE.md
 - [ ] Task 10: Catalog listings in `docs/`
 
