@@ -30,7 +30,7 @@
     {
       "id": 1,
       "kind": "execution",
-      "prompt": "The working tree in explaining-diffs/ has an uncommitted change that implements explaining-diffs/TASK.md. I need to verify it and then explain it to my product manager, who isn't technical. Explain the diff for me. Save the explainer files in an explainers/ directory at the repository root.",
+      "prompt": "The working tree in explaining-diffs/ has an uncommitted change that implements Task 3 of explaining-diffs/tasks/plan.md (the requirement is explaining-diffs/TASK.md). I need to verify it and then explain it to my product manager, who isn't technical. Explain the diff for me. Save the explainer files in an explainers/ directory at the repository root.",
       "expected_output": "A Markdown explainer with Mermaid diagrams and a matching self-contained HTML explainer in explainers/, covering each change with file:line locations, a why traced to TASK.md, a call-path diagram, and an honest record of what was and was not checked",
       "files": [
         "explaining-diffs"
@@ -45,7 +45,8 @@
         "The HTML file is self-contained: it loads no external scripts, stylesheets, fonts or images",
         "The explanation describes the end state of the diff and contains no narrative of the agent's own process (no 'first I looked at', no dead ends)",
         "Technical terms such as function, subtotal and test are explained in short, plain sentences a non-technical reader can follow",
-        "Each change in the HTML file shows a diff snippet of its code in which added lines are styled green and removed lines red, each also marked with + or -, and the Markdown file shows the same snippets as diff code blocks"
+        "Each change in the HTML file shows a diff snippet of its code in which added lines are styled green and removed lines red, each also marked with + or -, and the Markdown file shows the same snippets as diff code blocks",
+        "Both files contain a section that is collapsed by default (an HTML <details> element without the open attribute; in the Markdown a folded callout or <details>) holding Task 3's plan steps, each tied to the change it produced, and Task 3's test plan with every step marked as run with its observed result or as not run; the manual $100.01 step's mismatch (expected discount 10.00, actual unrounded) is reported if that step was run"
       ]
     }
   ]

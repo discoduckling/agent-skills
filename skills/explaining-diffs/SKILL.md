@@ -57,7 +57,7 @@ For each change, in this order:
 
 - **Title.** Plain words, the outcome, not the code ("Idle sessions log out after 30 minutes").
 - **What.** One or two short sentences about what is different now.
-- **Why.** The requirement it satisfies, quoted or paraphrased with its source ("Task 3: *sessions idle for 30 minutes must expire*").
+- **Why.** The requirement it satisfies, quoted or paraphrased with its source ("Task 3: *sessions idle for 30 minutes must expire*"). For tests, name the requirement each test guards, not only the plan step that asked for it.
 - **Where.** `file:start-end` for each hunk, using new-file line numbers. For a pure deletion, use the old-file lines: `file (removed, was 12-18)`.
 - **Diff snippet.** The change's hunks as a red/green diff: removed lines red with `-`, added lines green with `+`, one or two unchanged lines of context, and new-file line numbers in the gutter. Color is never the only marker; the `+` and `-` stay. For a hunk longer than about 15 lines, show the lines that carry the change and say where the rest is ("12 more lines at `file:40-51`"). In the Markdown note this is a ` ```diff ` block.
 
@@ -90,7 +90,7 @@ flowchart LR
 *`requireLogin` now asks `isExpired` before letting a page load; an expired session goes to `redirectToLogin`.*
 ````
 
-Draw the same nodes and arrows as inline SVG for the HTML page (see the skeleton in Step 7).
+Draw the same nodes and arrows as inline SVG for the HTML page (see the skeleton in Step 8).
 
 ### Step 6: Say how it was checked, and what wasn't
 
@@ -107,7 +107,17 @@ Not checked
 
 Never present an expectation as a result. "Changing 30 to 31 minutes would fail the expiry test" is a guess unless you ran it. Leave the agent's process out entirely: no "first I tried", no dead ends, no files you looked at.
 
-### Step 7: Write it in plain language, as two files
+### Step 7: Attach the plan, collapsed
+
+When a plan covers the change (a task list, a plan file, a ticket), add a **From the plan** section at the end, collapsed by default, so it's there for anyone who wants it without getting in the way. It holds:
+
+- **Where it came from:** the plan file and task, e.g. `tasks/plan.md`, Task 3.
+- **Plan steps:** the task's description or implementation steps, each tied to the change it produced ("→ Change 1"). A plan step with no matching change is a finding; say so.
+- **Test plan:** each of the task's test-plan steps, marked **ran** with the observed result, or **not run**. When an observed result differs from the step's expected result, flag it here *and* under Not checked or as a finding in Step 6.
+
+In the HTML, use `<details>` without the `open` attribute. In the Markdown note, use a folded callout (`> [!info]- From the plan`, collapsed in Obsidian and a plain quote elsewhere), or `<details>` when the note is headed for GitHub. Without a plan, write one line: "No plan or test plan was found for this change."
+
+### Step 8: Write it in plain language, as two files
 
 **Plain language:**
 - Short sentences. Lead each change with the outcome a user would notice.
@@ -143,6 +153,13 @@ The Markdown note:
 <command → result list> · **Not checked:** <list>
 
 ## Glossary
+
+> [!info]- From the plan (`tasks/plan.md`, Task 3)
+> **Plan steps**
+> 1. Add `isExpired()` with a 30-minute limit → Change 1
+> **Test plan**
+> 1. Write test: session idle 31 min → redirected — ran, passes
+> 2. Manual: leave a tab idle 30 min → logged out — **not run**
 ```
 
 The HTML page has the same sections and content. It must be self-contained, with no external scripts, stylesheets, fonts or images, so it opens offline and anywhere:
@@ -190,12 +207,15 @@ The HTML page has the same sections and content. It must be self-contained, with
   <!-- … one <g class="node"> per node, one <line class="edge"> per arrow -->
 </svg>
 <p><em>Every page load now checks how long the session has been idle.</em></p>
+<details><summary>From the plan (<code>tasks/plan.md</code>, Task 3)</summary>
+  <!-- plan steps → changes, then each test-plan step: ran + result, or not run -->
+</details>
 </body></html>
 ```
 
 If the environment can publish or render pages for the user, you may publish the HTML as well; the files are still the source. If you can't write files in this session, put the complete Markdown note in your reply, with the diagram, checks and glossary, and say that the files weren't saved.
 
-### Step 8: Hand it over
+### Step 9: Hand it over
 
 In the verification request (or the PR description), give both file paths or the published link, a two-to-three-line summary of what changed and why, and the "not checked" list. The explainer supports the human's verification; it doesn't replace it.
 
@@ -220,6 +240,7 @@ In the verification request (or the PR description), give both file paths or the
 - HTML that loads anything from the network
 - Jargon used before it's defined, or a reader would need the raw diff to follow along
 - A change with no diff snippet, or a snippet whose added and removed lines differ only by color
+- A plan existed but the explainer has no From the plan section, or that section is open by default, or a test-plan step has no ran / not-run status
 - The explainer written into the repo and committed as part of the change it explains
 
 ## Verification
@@ -232,6 +253,7 @@ Before handing the explainer over, confirm:
 - [ ] A diagram is present when the change crosses functions or files, with new and changed parts distinguished by style and label
 - [ ] Every listed check ran and shows its observed result, and a Not checked list is present
 - [ ] Every change has a red/green diff snippet with `+`/`-` markers and new-file line numbers, in both files
+- [ ] When a plan exists, a collapsed-by-default From the plan section ties each plan step to a change and marks every test-plan step ran (with result) or not run
 - [ ] Technical terms are defined on first use, and there's no process narrative
 - [ ] The `.md` and `.html` exist at the designated location with the same changes and diagrams, and the HTML has no external references
 - [ ] The handover message includes both paths, the short summary, and the Not checked list

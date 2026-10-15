@@ -39,7 +39,8 @@ The new skill `skills/explaining-diffs/SKILL.md` exists. Its process tells the a
    - **`.md`:** the full text explanation plus Mermaid diagrams (` ```mermaid ` blocks), with a link to the sibling `.html`. It needs no plugins beyond Obsidian's or GitHub's built-in Mermaid rendering.
 
    Save both to the location the user's or project's instructions designate. With no designation, save them to `tasks/explainers/`. If the host can publish or render pages, the agent may publish the HTML, but the skill describes that as a capability and never names a vendor tool.
-8. **Hand it over.** The verification ask, or the PR description under `/build auto`, includes both paths (or a published link) and a two-to-three-line summary.
+8. **Include the plan, collapsed.** When a plan covers the change, add a section that is collapsed by default (`<details>` in the HTML; a folded callout or `<details>` in the `.md`). It holds the plan steps that produced the changes, each tied to its change, and the task's test plan with every step marked as run (with the observed result) or not run. Without a plan, one line says none was found.
+9. **Hand it over.** The verification ask, or the PR description under `/build auto`, includes both paths (or a published link) and a two-to-three-line summary.
 
 The skill also includes a **self-check before handing over** (its Verification section): every cited line range matches a hunk in the pinned diff, every *why* traces to a requirement, every listed check has observed evidence, no hunk in the diff is left unexplained, and the `.md` and `.html` carry the same changes and diagrams.
 

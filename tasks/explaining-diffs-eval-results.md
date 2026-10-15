@@ -74,3 +74,15 @@ The user asked for the HTML to show code as a green/red diff. Each change now ca
 The skeleton scored 6/10 this time, against 3/9 the first time, so baseline runs vary from run to run. Expectations 2, 5 and 9 failed in both baseline runs, and 10 failed in this one.
 
 Plugin eval on the revised skill: `fires` with 1/3 · without 0/3 (Δ **+0.33**, unchanged), and `stays-quiet` 6/6 · cost $1.68.
+
+## Revision: collapsed "From the plan" section (user feedback on the Task 5 sample)
+
+The user asked for the task's plan steps and test plan in a section collapsed by default. The fixture gained `tasks/plan.md`, with Task 3's steps and a 5-step test plan. Step 5 (manual, $100.01) expects a discount of 10.00, and the code returns an unrounded value, so a faithful explainer must report the mismatch. The eval prompt now names Task 3 of that plan, and expectation 11 was added.
+
+| Run | Skill | Result | Expectation 11 (collapsed plan section) |
+|---|---|---|---|
+| Baseline, re-run | skeleton (from `3677eca`) | 4/11 | ✗ no `<details>` or folded callout, no per-step status |
+| After, first draft | full skill + plan step | 10/11 | ✓. Expectation 4 failed: the tests' why cited the plan step, not the requirement they guard |
+| After, final | + "for tests, name the requirement each test guards" | **11/11** | ✓ `<details>` without `open`, `[!info]-` callout, every step ran or not run, step 5 "ran, differs" |
+
+Plugin eval on the final skill, two back-to-back runs of `fires`: with 0/3, then 2/3; without 0/3 both times. Pooled that's **2/6 vs 0/6**. `stays-quiet` 6/6. Three runs per arm is noisy, so read the pooled numbers. Cost $2.77.
