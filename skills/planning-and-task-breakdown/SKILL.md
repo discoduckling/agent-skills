@@ -89,10 +89,12 @@ Each task follows this structure, whether it lands in the markdown task list or 
 - [ ] [Specific, testable condition]
 - [ ] [Specific, testable condition]
 
-**Verification:**
-- [ ] Tests pass: [the repository's focused-test command]
-- [ ] Build succeeds: [the repository's build command]
-- [ ] Manual check: [description of what to verify]
+**Test plan:**
+1. Write `[test file]`: [specific case, including an edge or failure case] → [expected result]
+2. Run [the repository's focused-test command] → [the new tests fail, and why]
+3. Implement; rerun [the focused-test command] → [the new tests pass]
+4. Run [the repository's full-suite and build commands] → [suite green, build clean]
+5. Manual: [concrete input or action] → [observable result]
 
 **Dependencies:** [Task numbers this depends on, or "None"]
 
@@ -102,6 +104,20 @@ Each task follows this structure, whether it lands in the markdown task list or 
 
 **Estimated scope:** [Small: 1-2 files | Medium: 3-5 files | Large: 5+ files]
 ```
+
+The test plan is a numbered sequence someone else could execute to prove the task works. Every step pairs one action with its expected result; a step with no expected result proves nothing.
+
+```markdown
+Bad:  - [ ] Tests pass
+      - [ ] Manual check: verify preferences work
+Good: 1. Write `tests/prefs.test.ts`: PATCH /prefs with `email_enabled: "yes"` → 400 validation error
+      2. Run `npm test -- prefs` → new case fails with 404 (route missing)
+      3. Implement; rerun `npm test -- prefs` → passes
+      4. Run `npm test && npm run build` → suite green, build clean
+      5. Manual: GET /prefs for a new user → `{ "email_enabled": false }`
+```
+
+Every task gets a test plan, including docs and config tasks with nothing to unit-test; those may be two steps (e.g. `Run the build → succeeds`, `Open the rendered page → new section appears`). Skip the fail-first steps only when the task adds no testable behavior.
 
 ### Step 5: Order and Checkpoint
 
@@ -159,7 +175,7 @@ The same rule applies to an external task list target: never bulk-close or delet
 The task list target is where tasks and checkpoints are recorded. It is defined once, here; every other reference in this skill defers to it.
 
 - **Default: a checklist-style markdown file at `tasks/todo.md`.** This is the convention the `/build` command and other downstream tooling expect. Use it unless the project says otherwise.
-- **External tracker:** if the project's agent rules (`CLAUDE.md`, `AGENTS.md`, etc.) or the user designate an issue tracker (e.g. GitHub Issues, Jira, Linear, `bd`/beads), create one tracker item per task instead of writing `tasks/todo.md`. Map the Step 4 structure onto the tracker's fields: acceptance criteria and verification steps in the item body, dependencies via the tracker's linking mechanism (`bd dep add`, "blocked by", etc.). Record Step 5 checkpoints as tracker items too, or as a checklist in the plan document if the tracker has no natural equivalent.
+- **External tracker:** if the project's agent rules (`CLAUDE.md`, `AGENTS.md`, etc.) or the user designate an issue tracker (e.g. GitHub Issues, Jira, Linear, `bd`/beads), create one tracker item per task instead of writing `tasks/todo.md`. Map the Step 4 structure onto the tracker's fields: acceptance criteria and the test plan in the item body, dependencies via the tracker's linking mechanism (`bd dep add`, "blocked by", etc.). Record Step 5 checkpoints as tracker items too, or as a checklist in the plan document if the tracker has no natural equivalent.
 
 When using an external tracker, note it in `tasks/plan.md` (e.g. "Tasks tracked in Linear project FOO") so downstream steps and future sessions know where to look, and keep the plan document's Task List section as an ordered index of tracker item IDs or links rather than a duplicate checklist.
 
@@ -226,6 +242,7 @@ When multiple agents or sessions are available:
 | "The tasks are obvious" | Write them down anyway. Explicit tasks surface hidden dependencies and forgotten edge cases. |
 | "Planning is overhead" | Planning is the task. Implementation without a plan is just typing. |
 | "I can hold it all in my head" | Context windows are finite. Written plans survive session boundaries and compaction. |
+| "'Tests pass' is a good enough test plan" | It names no test, no input, and no expected result, so whoever builds the task re-derives all three. Write the steps now, while the spec is in context. |
 | "The old `tasks/plan.md` is stale, I'll just replace it" | Unchecked tasks may be mid-build in another session. Overwriting them destroys work state that exists nowhere else. Stop and ask. |
 
 ## Red Flags
@@ -234,7 +251,9 @@ When multiple agents or sessions are available:
 - Overwriting a `tasks/plan.md` or `tasks/todo.md` that still has unchecked tasks for different work, without asking
 - Writing `tasks/todo.md` when the project has designated an external tracker (or scattering tasks across both)
 - Tasks that say "implement the feature" without acceptance criteria
-- No verification steps in the plan
+- A task with no test plan, or a test plan that is a generic checklist ("tests pass", "verify it works")
+- Test plan steps with no expected result
+- New behavior whose tests are never run to fail before implementation
 - All tasks are XL-sized
 - No checkpoints between tasks
 - Dependency order isn't considered
@@ -244,7 +263,7 @@ When multiple agents or sessions are available:
 Before starting implementation, confirm:
 
 - [ ] Every task has acceptance criteria
-- [ ] Every task has a verification step
+- [ ] Every task has a numbered, step-by-step test plan, and every step states its expected result
 - [ ] Task dependencies are identified and ordered correctly
 - [ ] Tasks are recorded in the task list target (default `tasks/todo.md`)
 - [ ] No pre-existing incomplete plan was overwritten without explicit user confirmation

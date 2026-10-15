@@ -30,7 +30,7 @@
     {
       "id": 1,
       "prompt": "Break the attached notifications spec into an executable plan.",
-      "expected_output": "Ordered tasks in tasks/plan.md, each small, verifiable, with acceptance criteria and dependencies",
+      "expected_output": "Ordered tasks in tasks/plan.md, each small, verifiable, with acceptance criteria, dependencies, and a numbered step-by-step test plan whose every step pairs an action with its expected result",
       "files": [
         "planning-and-task-breakdown"
       ],
@@ -38,7 +38,11 @@
         "Every task has acceptance criteria",
         "Tasks are ordered by dependency",
         "Tasks are vertical slices rather than horizontal layers",
-        "No implementation code is written during planning"
+        "No implementation code is written during planning",
+        "Every task in the written plan has its own numbered, step-by-step test plan, and every step in it pairs a concrete action (a test to write, a command to run, a manual check) with the expected result of that action; a checklist such as 'Tests pass' or 'Manual check: verify it works' with no stated expected result does not satisfy this",
+        "Test-plan steps name specific tests tied to that task's behavior from the notifications spec (for example a deduplication test keyed on user, task, event type and event version, or a preference-validation test), not only a generic 'run the test suite'",
+        "At least one task's test plan includes a failure or edge case with its expected result, such as a duplicate job being suppressed, an invalid preference update being rejected, or no email being sent while the feature flag is disabled",
+        "Test plans for tasks that add behavior order their steps so the new tests are written and run, and expected to fail, before the implementation, then rerun and expected to pass after it"
       ]
     }
   ]
