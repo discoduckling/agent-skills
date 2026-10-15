@@ -178,7 +178,7 @@ Reference `git-workflow-and-versioning` "Change Summaries" rather than restating
 
 ## Task 5: Generate a sample explainer into the vault for review (gate)
 
-**Description:** Follow the finished skill against the fixture in a scratchpad copy (apply and commit the patch, run `node --test`). Write `2026-10-14-explaining-diffs-sample.md` and `.html` to `/Users/mitaleedesai/Documents/New World Work Notes/Diff Explainers/`. Then **stop** and ask the user to review both. Any feedback becomes a revision of Task 4 (re-run Task 4's test plan) and a fresh sample.
+**Description:** Follow the finished skill against the fixture in a scratchpad copy (apply and commit the patch, run `node --test`). Write the sample `.md` and `.html` to `/Users/mitaleedesai/Documents/New World Work Notes/Diff Explainers/SAMPLE Bulk-order discount/` (ticket-folder layout). Then **stop** and ask the user to review both. Any feedback becomes a revision of Task 4 (re-run Task 4's test plan) and a fresh sample.
 
 **Acceptance criteria:**
 - [ ] Both files exist in the vault folder, with matching content and diagrams
