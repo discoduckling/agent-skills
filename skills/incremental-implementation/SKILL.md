@@ -243,6 +243,7 @@ After completing all increments for a task:
 - [ ] The build is clean
 - [ ] The feature works end-to-end as specified
 - [ ] No uncommitted changes remain
+- [ ] When you hand the finished task to a human to verify, a diff explainer goes with it (see `explaining-diffs`)
 
 ## See Also
 

@@ -22,7 +22,7 @@ Pick the next pending task from the plan. Then:
 5. Run the full test suite to check for regressions
 6. Run the build to verify compilation
 7. Commit with a descriptive message
-8. Mark the task complete and stop
+8. Mark the task complete, generate a diff explainer for this task with the agent-skills:explaining-diffs skill, and stop
 
 ## Autonomous: the whole plan (`/build auto`)
 
@@ -32,13 +32,14 @@ Use this once a spec exists and you want to collapse plan + build into one run. 
 2. **Establish a clean baseline.** Run `git status --porcelain`. If there are uncommitted changes outside the expected planning artifacts (`SPEC.md`, `docs/SPEC.md`, `spec/*`, `tasks/plan.md`, `tasks/todo.md`), stop and ask the user to commit, stash, or confirm how to handle them. Autonomous per-task commits must not absorb unrelated local work, or the clean-rollback guarantee breaks.
 3. **Plan if needed.** If there is no `tasks/plan.md`, invoke agent-skills:planning-and-task-breakdown to generate one.
 4. **Single checkpoint.** Present the full plan and wait for an unambiguous affirmative (e.g. "approve", "go", "yes"). Treat hedged responses ("looks reasonable", "I guess") as **not** approved. This is the only human gate — after approval, run autonomously. If you generated `tasks/plan.md`, commit it as a single preparatory commit now so it doesn't bleed into the first task's commit.
-5. **Execute every task in dependency order.** Use each task's declared dependencies; if they aren't explicit, execute in the order the plan lists them. For each task, run the full default loop above (RED → GREEN → regression → build → commit → mark complete). Stage only the files that task touched plus its task-status update — never `git add -A` blindly — and make one commit per task so any point is a clean rollback.
+5. **Execute every task in dependency order.** Use each task's declared dependencies; if they aren't explicit, execute in the order the plan lists them. For each task, run the full default loop above (RED → GREEN → regression → build → commit → mark complete), without the per-task explainer. Stage only the files that task touched plus its task-status update — never `git add -A` blindly — and make one commit per task so any point is a clean rollback.
 6. **Stop and ask the user** (do not push through) when:
    - a test can't be made to pass or the build breaks without an obvious fix → follow agent-skills:debugging-and-error-recovery
    - the spec is ambiguous, or a task needs a decision the spec doesn't cover
    - a task is high-risk or irreversible — auth/permission changes, destructive data migrations, payments, deletions, deploys, anything touching secrets, **or anything you can't undo with `git revert`** → follow agent-skills:doubt-driven-development and get explicit sign-off before continuing
 
    After the user resolves a blocker, they re-invoke `/build auto` — it resumes from the next pending task.
-7. **Summarize at the end:** tasks completed, tests added, commits made, and anything skipped, flagged, or left for the user.
+7. **Explain the branch before any PR.** After the last task, generate one diff explainer for the whole branch (`<base>...HEAD`) with one section per task, using the agent-skills:explaining-diffs skill. A run that stops early makes no explainer at that stop.
+8. **Summarize at the end:** tasks completed, tests added, commits made, the explainer's paths, and anything skipped, flagged, or left for the user.
 
 If any step fails, follow the agent-skills:debugging-and-error-recovery skill.

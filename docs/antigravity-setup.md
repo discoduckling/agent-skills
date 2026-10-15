@@ -58,6 +58,7 @@ Use the native plugin skills directly while that importer limitation applies:
 | `/test` | `/agent-skills:test-driven-development` | Runs the red-green-refactor workflow |
 | `/review` | `/agent-skills:code-review-and-quality` | Runs the five-axis review workflow |
 | `/code-simplify` | `/agent-skills:code-simplification` | Simplifies without changing behavior |
+| `/explain-diff` | `/agent-skills:explaining-diffs` | Writes a plain-language Markdown and HTML explainer of a finished diff |
 | `/ship` | `/agent-skills:shipping-and-launch` | The wrapper's automatic persona fan-out is unavailable; invoke specialist agents separately |
 | `/webperf` | Select `web-performance-auditor` from `/agents` | This workflow is a persona, not a skill |
 

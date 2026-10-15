@@ -208,6 +208,8 @@ POTENTIAL CONCERNS:
 
 This pattern catches wrong assumptions early and gives reviewers a clear map of the change. The "DIDN'T TOUCH" section is especially important — it shows you exercised scope discipline and didn't go on an unsolicited renovation.
 
+Before opening a pull request for a branch that no one verified task by task, write a diff explainer for the whole branch (see `explaining-diffs`) and link it in the PR description.
+
 ## Pre-Commit Hygiene
 
 Before every commit:
