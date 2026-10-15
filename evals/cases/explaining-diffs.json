@@ -1,0 +1,51 @@
+{
+  "skill_name": "explaining-diffs",
+  "trigger": {
+    "positive": [
+      {
+        "prompt": "Explain this diff in plain language so I can walk my product manager through it",
+        "top_k": 3
+      },
+      {
+        "prompt": "Explain what changed on this branch before I verify it",
+        "top_k": 3
+      },
+      {
+        "prompt": "Write up an explainer of the last commit with diagrams showing how the changed functions connect",
+        "top_k": 3
+      }
+    ],
+    "negative": [
+      {
+        "prompt": "Review this pull request for bugs and security issues before I merge it",
+        "owner": "code-review-and-quality"
+      },
+      {
+        "prompt": "Write a commit message for my staged changes",
+        "owner": "git-workflow-and-versioning"
+      }
+    ]
+  },
+  "evals": [
+    {
+      "id": 1,
+      "kind": "execution",
+      "prompt": "The working tree in explaining-diffs/ has an uncommitted change that implements explaining-diffs/TASK.md. I need to verify it and then explain it to my product manager, who isn't technical. Explain the diff for me. Save the explainer files in an explainers/ directory at the repository root.",
+      "expected_output": "A Markdown explainer with Mermaid diagrams and a matching self-contained HTML explainer in explainers/, covering each change with file:line locations, a why traced to TASK.md, a call-path diagram, and an honest record of what was and was not checked",
+      "files": [
+        "explaining-diffs"
+      ],
+      "expectations": [
+        "Both a Markdown file and an HTML file are written under explainers/, and they describe the same set of changes",
+        "The explainer pins the diff: it names the base commit SHA and says the changes are uncommitted on top of it",
+        "Every file:line location cited matches a hunk in the actual diff of src/pricing.js, src/checkout.js and test/checkout.test.js, using new-file line numbers, and no hunk in the diff is left unexplained",
+        "Each change states why it was needed by tracing it to a specific requirement in TASK.md (discount over $100, applied before tax, exactly $100 excluded, discount shown on the receipt)",
+        "The Markdown file contains a Mermaid diagram of the checkout -> applyDiscount -> addTax call path in which the new or changed parts are visually distinguished from unchanged ones, and the HTML file contains an equivalent inline SVG diagram",
+        "A section on how the change was checked lists only checks that are visible in the trace (for example running node --test) with their observed results, and explicitly says what was not checked; it claims no check that did not run",
+        "The HTML file is self-contained: it loads no external scripts, stylesheets, fonts or images",
+        "The explanation describes the end state of the diff and contains no narrative of the agent's own process (no 'first I looked at', no dead ends)",
+        "Technical terms such as function, subtotal and test are explained in short, plain sentences a non-technical reader can follow"
+      ]
+    }
+  ]
+}
