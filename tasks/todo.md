@@ -28,7 +28,7 @@ Plan and per-task test plans: [`tasks/plan.md`](plan.md). Spec: [`SPEC.md`](../S
 
 ## Phase 4: Local config and release
 - [ ] Task 11: Point `~/.claude/CLAUDE.md` at the vault folder (HARD GATE: ask first, even under `/build auto`)
-- [ ] Task 12: Bump manifests to 0.6.15
+- [x] Task 12: Bump manifests to 0.6.15
 
 ## Checkpoint: Complete
 - [ ] All Tier 1 validators pass; Tier 2 rank-1 ≥ 95 with no new collision warning
