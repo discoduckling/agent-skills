@@ -9,7 +9,7 @@ When an agent finishes a code change and asks the human to verify it, the human 
 **Trigger points:**
 
 1. **`/build` (one task at a time):** at the end of each task, where the agent stops and asks for verification. Each explainer covers that task's commit(s).
-2. **`/build auto` (no per-task confirmation):** once, *before the PR is created*. It covers the whole branch (`<base>...HEAD`), with one section per task, and the PR description links to it.
+2. **`/build auto` (no per-task confirmation):** once, at the end of the run, *before the PR is created*. It covers the whole branch (`<base>...HEAD`), with one section per task, and the PR description links to it. A run that stops partway through (a blocker or a hard gate) makes no explainer at that stop; the user can run `/explain-diff` for the work so far.
 3. **On demand:** a standalone `/explain-diff [range]` command, plus natural-language triggers ("explain this diff", "explain what changed on this branch"). With no range it defaults to the current branch versus its base, including uncommitted changes.
 
 **Target:** the user's fork (`discoduckling/agent-skills`) on branch `feat/diff-explainer`. It isn't an upstream PR, but it follows upstream conventions so it stays upstreamable.

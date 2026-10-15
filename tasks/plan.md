@@ -56,6 +56,7 @@ Add a new `explaining-diffs` skill that writes a plain-language explainer of a f
 - [ ] Tier 3 with the skill passes every expectation, and the plugin eval content grader is higher with the plugin than without
 - [ ] All results are recorded in `tasks/explaining-diffs-eval-results.md`
 - [ ] After merge and local reinstall (CLAUDE.md fork-PR steps): `/build` on a scratch task produces both files in `Diff Explainers/`, their line numbers match `git show`, and the Mermaid renders in Obsidian
+- [ ] Dogfood: before opening this branch's PR, follow `skills/explaining-diffs/SKILL.md` from this repo to write a branch explainer for `feat/diff-explainer` into `Diff Explainers/feat-diff-explainer/` (no Linear ticket, so the folder is named after the branch), and link it in the PR description
 - [ ] Ready for PR
 
 ---

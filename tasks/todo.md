@@ -34,4 +34,5 @@ Plan and per-task test plans: [`tasks/plan.md`](plan.md). Spec: [`SPEC.md`](../S
 - [ ] All Tier 1 validators pass; Tier 2 rank-1 ≥ 95 with no new collision warning
 - [ ] Tier 3 8/8 with the skill; plugin content grader Δ > 0; results recorded
 - [ ] Post-merge reinstall: `/build` on a scratch task produces both files in `Diff Explainers/`, line numbers match `git show`, Mermaid renders in Obsidian
+- [ ] Dogfood: before opening this branch's PR, follow `skills/explaining-diffs/SKILL.md` from this repo to write a branch explainer for `feat/diff-explainer` into `Diff Explainers/feat-diff-explainer/` (no Linear ticket, so the folder is named after the branch), and link it in the PR description
 - [ ] Ready for PR
