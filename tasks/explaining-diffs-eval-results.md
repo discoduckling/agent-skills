@@ -61,3 +61,16 @@ Intermediate runs were with 0/3 · without 0/3 at each step, and the judge's rea
 4. **Label changed calls.** The `checkout → addTax` arrow looked unchanged, though its input changed. That's the point of the fix, so new calls and changed-input calls are now labelled.
 
 The two with-plugin runs that still fail passed when re-graded by hand without the diff, so the eval's judge (which does see the diff) may be catching line-number detail. They're left as failures, and the skill wasn't tuned further to the grader.
+
+## Revision: red/green diff snippets (user feedback on the Task 5 sample)
+
+The user asked for the HTML to show code as a green/red diff. Each change now carries a diff snippet: `+` lines green and `-` lines red, with new-file line numbers, in the HTML, and as ` ```diff ` blocks in the `.md`. Expectation 10 was added to the Tier 3 case for this.
+
+| Run | Skill | Result | Expectation 10 (diff snippets) |
+|---|---|---|---|
+| Baseline, re-run | skeleton (from `3677eca`, swapped in temporarily) | 6/10 | ✗ "Neither file has any diff snippet" |
+| After | full skill with snippets | **10/10** | ✓ |
+
+The skeleton scored 6/10 this time, against 3/9 the first time, so baseline runs vary from run to run. Expectations 2, 5 and 9 failed in both baseline runs, and 10 failed in this one.
+
+Plugin eval on the revised skill: `fires` with 1/3 · without 0/3 (Δ **+0.33**, unchanged), and `stays-quiet` 6/6 · cost $1.68.

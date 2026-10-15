@@ -59,7 +59,7 @@ For each change, in this order:
 - **What.** One or two short sentences about what is different now.
 - **Why.** The requirement it satisfies, quoted or paraphrased with its source ("Task 3: *sessions idle for 30 minutes must expire*").
 - **Where.** `file:start-end` for each hunk, using new-file line numbers. For a pure deletion, use the old-file lines: `file (removed, was 12-18)`.
-- **Snippet.** Optional, and only when a few lines make the point better than words.
+- **Diff snippet.** The change's hunks as a red/green diff: removed lines red with `-`, added lines green with `+`, one or two unchanged lines of context, and new-file line numbers in the gutter. Color is never the only marker; the `+` and `-` stay. For a hunk longer than about 15 lines, show the lines that carry the change and say where the rest is ("12 more lines at `file:40-51`"). In the Markdown note this is a ` ```diff ` block.
 
 ```
 BAD:  Refactored the auth middleware and updated tests.
@@ -130,6 +130,12 @@ The Markdown note:
 ### 1. <Title>
 **What:** … **Why:** … **Where:** `file:10-15`, `file:3`
 
+```diff
+ function requireLogin(req) {
+   const session = loadSession(req);
++  if (isExpired(session)) return redirectToLogin(req, 'idle');
+```
+
 ## How the pieces connect
 <Mermaid diagram + caption>
 
@@ -148,10 +154,12 @@ The HTML page has the same sections and content. It must be self-contained, with
 <title>Idle sessions log out after 30 minutes</title>
 <style>
   :root { --bg:#fff; --fg:#1d2939; --muted:#667085; --line:#98a2b3;
-          --node:#f2f4f7; --new:#d1fadf; --changed:#fef0c7; --link:#175cd3; }
+          --node:#f2f4f7; --new:#d1fadf; --changed:#fef0c7; --link:#175cd3;
+          --add:#dcfae6; --del:#fee4e2; }
   @media (prefers-color-scheme: dark) {
     :root { --bg:#101828; --fg:#f2f4f7; --muted:#98a2b3; --line:#667085;
-            --node:#1d2939; --new:#054f31; --changed:#7a2e0e; --link:#84caff; } }
+            --node:#1d2939; --new:#054f31; --changed:#7a2e0e; --link:#84caff;
+            --add:#053321; --del:#55160c; } }
   body { background:var(--bg); color:var(--fg); font:16px/1.6 system-ui, sans-serif;
          max-width:760px; margin:0 auto; padding:24px 16px; }
   a { color:var(--link); } code { font-family:ui-monospace, monospace; }
@@ -159,9 +167,17 @@ The HTML page has the same sections and content. It must be self-contained, with
   .node rect { fill:var(--node); stroke:var(--line); }
   .node.new rect { fill:var(--new); } .node.changed rect { fill:var(--changed); }
   .edge { stroke:var(--line); stroke-width:1.5; }
+  pre.diff { background:var(--node); border-radius:6px; padding:8px 0; overflow-x:auto; font-size:13px; }
+  pre.diff span { display:block; padding:0 12px; white-space:pre; }
+  pre.diff .add { background:var(--add); } pre.diff .del { background:var(--del); }
+  pre.diff .ln { font-style:normal; display:inline-block; width:3ch; color:var(--muted); user-select:none; }
 </style></head><body>
 <h1>Idle sessions log out after 30 minutes</h1>
-<!-- same sections as the Markdown note -->
+<!-- same sections as the Markdown note; each change carries its diff snippet -->
+<pre class="diff"><code><span><i class="ln">41</i>  const session = loadSession(req);</span>
+<span class="del"><i class="ln"></i>- return next();</span>
+<span class="add"><i class="ln">42</i>+ if (isExpired(session)) return redirectToLogin(req, 'idle');</span>
+<span class="add"><i class="ln">43</i>+ return next();</span></code></pre>
 <svg viewBox="0 0 600 120" role="img" aria-labelledby="d1">
   <title id="d1">requireLogin() now calls isExpired() before letting a page load</title>
   <defs><marker id="arrow" viewBox="0 0 8 8" refX="8" refY="4" markerWidth="8"
@@ -203,6 +219,7 @@ In the verification request (or the PR description), give both file paths or the
 - Diagrams where new and changed parts differ only by color, or a multi-file call-path change with no diagram
 - HTML that loads anything from the network
 - Jargon used before it's defined, or a reader would need the raw diff to follow along
+- A change with no diff snippet, or a snippet whose added and removed lines differ only by color
 - The explainer written into the repo and committed as part of the change it explains
 
 ## Verification
@@ -214,6 +231,7 @@ Before handing the explainer over, confirm:
 - [ ] Every why points to a specific requirement, or says plainly that none exists
 - [ ] A diagram is present when the change crosses functions or files, with new and changed parts distinguished by style and label
 - [ ] Every listed check ran and shows its observed result, and a Not checked list is present
+- [ ] Every change has a red/green diff snippet with `+`/`-` markers and new-file line numbers, in both files
 - [ ] Technical terms are defined on first use, and there's no process narrative
 - [ ] The `.md` and `.html` exist at the designated location with the same changes and diagrams, and the HTML has no external references
 - [ ] The handover message includes both paths, the short summary, and the Not checked list

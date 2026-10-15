@@ -14,7 +14,7 @@ Plan and per-task test plans: [`tasks/plan.md`](plan.md). Spec: [`SPEC.md`](../S
 
 ## Phase 2: Skill and sample
 - [x] Task 4: Write the full `explaining-diffs` SKILL.md and re-run the evals (Tier 3 9/9; plugin Δ +0.33)
-- [ ] Task 5: Generate a sample explainer into the vault for review (HARD GATE: stop even under `/build auto`) — sample written 2026-10-14, awaiting user review
+- [ ] Task 5: Generate a sample explainer into the vault for review (HARD GATE: stop even under `/build auto`) — sample written 2026-10-14; revised with red/green diff snippets per user feedback; awaiting approval
 
 ## Checkpoint B: Sample approved
 - [ ] User approved `Diff Explainers/2026-10-14-explaining-diffs-sample.{md,html}`

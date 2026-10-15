@@ -44,7 +44,8 @@
         "A section on how the change was checked lists only checks that are visible in the trace (for example running node --test) with their observed results, and explicitly says what was not checked; it claims no check that did not run",
         "The HTML file is self-contained: it loads no external scripts, stylesheets, fonts or images",
         "The explanation describes the end state of the diff and contains no narrative of the agent's own process (no 'first I looked at', no dead ends)",
-        "Technical terms such as function, subtotal and test are explained in short, plain sentences a non-technical reader can follow"
+        "Technical terms such as function, subtotal and test are explained in short, plain sentences a non-technical reader can follow",
+        "Each change in the HTML file shows a diff snippet of its code in which added lines are styled green and removed lines red, each also marked with + or -, and the Markdown file shows the same snippets as diff code blocks"
       ]
     }
   ]
