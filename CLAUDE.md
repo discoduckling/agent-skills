@@ -51,6 +51,24 @@ PRs target the upstream repository's default branch. In a typical fork setup the
 - Before opening a PR, search the upstream repository's open PRs and issues for work that touches the same files or rules. If any overlaps, coordinate (build on it, align your rules with it, or rebase after it merges) instead of opening a conflicting PR.
 - Prefer small, focused PRs over large refactors of widely shared files (for example, files under `scripts/`), which are more likely to collide with in-flight work.
 
+### Fork PRs (`discoduckling/agent-skills`)
+
+The installed plugin is cached by version, so a PR that doesn't bump the version won't reach local Claude Code after merge. Before opening (or pushing new commits to) any PR on the fork:
+
+1. Bump the patch version in all five manifests, keeping them identical: `plugin.json`, `.claude-plugin/plugin.json`, `.claude-plugin/marketplace.json`, `.codex-plugin/plugin.json`, `.agents/plugins/marketplace.json`. Skip this if the branch already bumped past `main`'s version.
+2. Run `node scripts/validate-versions.js` and confirm it prints `All plugin manifests use version <new>`.
+3. Commit it separately as `chore(release): bump plugin manifests to <new>`.
+
+After the PR merges, refresh the local install and check it:
+
+```bash
+claude plugin marketplace update discoduckling-agent-skills
+claude plugin update agent-skills@discoduckling-agent-skills
+grep -A6 '"agent-skills@discoduckling-agent-skills"' ~/.claude/plugins/installed_plugins.json  # version = <new>, gitCommitSha = merge commit
+```
+
+Then restart Claude Code. If the version didn't change, uninstall and reinstall the plugin.
+
 ## Boundaries
 
 - Always: Run the CONTRIBUTING.md pre-flight checks before creating a new skill directory
