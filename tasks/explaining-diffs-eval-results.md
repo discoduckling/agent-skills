@@ -21,3 +21,14 @@ Overall: **3/9 (33%)**
 | 7 | HTML self-contained | ✓ | Inline `<style>`, system fonts, no external refs |
 | 8 | No process narrative | ✓ | End state only |
 | 9 | Technical terms explained plainly | ✗ | "function", "test", "test suite" and "field" used without explanation |
+
+### Plugin eval: `claude plugin eval . --case 'explaining-diffs-*' --runs 3 --model claude-opus-5-5 --no-publish`
+
+| Case | Arm | skill-fired (indicator) | Scored grader | Score |
+|---|---|---|---|---|
+| `explaining-diffs-fires` | with plugin | 3/3 | `explainer-content` 0/3 (all judges FAIL) | 0.00 |
+| `explaining-diffs-fires` | without plugin | — | `explainer-content` 0/3 | 0.00 |
+| `explaining-diffs-stays-quiet-on-review` | with plugin | — | `not-fired` 3/3 | 1.00 |
+| `explaining-diffs-stays-quiet-on-review` | without plugin | — | `not-fired` 3/3 | 1.00 |
+
+Δ 0.00 on both · cost $1.44 (plus $0.25 for the smoke run). Even the skeleton's description makes the skill fire every time, so routing works. Without the process, the content still fails. The stays-quiet case confirms a review request with a diff doesn't pull in `explaining-diffs`.

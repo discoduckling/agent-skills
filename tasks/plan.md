@@ -20,7 +20,7 @@ Add a new `explaining-diffs` skill that writes a plain-language explainer of a f
 
 - [x] Task 1: Fixture repo with a multi-file, call-path-changing patch (uses the runner's `.eval/working-tree.patch` convention, applied as uncommitted changes)
 - [x] Task 2: Tier 3 eval case, skill skeleton, and baseline run (baseline 3/9)
-- [ ] Task 3: Plugin eval pair (fires / stays quiet) and baseline run
+- [x] Task 3: Plugin eval pair (fires / stays quiet) and baseline run (content 0/3 both arms; quiet 6/6)
 
 ### Checkpoint A: Baseline discriminates
 
