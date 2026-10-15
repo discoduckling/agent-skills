@@ -148,13 +148,13 @@ The HTML page has the same sections and content. It must be self-contained, with
 <title>Idle sessions log out after 30 minutes</title>
 <style>
   :root { --bg:#fff; --fg:#1d2939; --muted:#667085; --line:#98a2b3;
-          --node:#f2f4f7; --new:#d1fadf; --changed:#fef0c7; }
+          --node:#f2f4f7; --new:#d1fadf; --changed:#fef0c7; --link:#175cd3; }
   @media (prefers-color-scheme: dark) {
     :root { --bg:#101828; --fg:#f2f4f7; --muted:#98a2b3; --line:#667085;
-            --node:#1d2939; --new:#054f31; --changed:#7a2e0e; } }
+            --node:#1d2939; --new:#054f31; --changed:#7a2e0e; --link:#84caff; } }
   body { background:var(--bg); color:var(--fg); font:16px/1.6 system-ui, sans-serif;
          max-width:760px; margin:0 auto; padding:24px 16px; }
-  code { font-family:ui-monospace, monospace; }
+  a { color:var(--link); } code { font-family:ui-monospace, monospace; }
   svg { width:100%; height:auto; } svg text { fill:var(--fg); font:13px system-ui; }
   .node rect { fill:var(--node); stroke:var(--line); }
   .node.new rect { fill:var(--new); } .node.changed rect { fill:var(--changed); }
