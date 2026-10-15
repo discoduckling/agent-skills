@@ -1,0 +1,20 @@
+---
+description: Explain a finished diff in plain language — what changed, where, why, how it connects, and how it was checked — as a Markdown note and an HTML page
+---
+
+Invoke the agent-skills:explaining-diffs skill.
+
+$ARGUMENTS
+
+Explain the change named in the arguments: a commit, a range such as `main..HEAD`, or a pull request number. With no arguments, explain the current branch against its base, including uncommitted and untracked changes.
+
+1. Read CLAUDE.md for where explainers are saved and how they are named; with no instruction, use `tasks/explainers/`
+2. Pin the diff to a commit and list every hunk
+3. Find the requirement behind it: the task, plan, spec, or ticket
+4. Write each change with what, why, `file:line`, and a red/green diff snippet
+5. Draw the call or dependency diagram when the change crosses functions or files
+6. List what was checked with observed results, and what was not checked
+7. Write the Markdown note and the HTML page, with the plan and test plan in a collapsed section when a plan exists
+8. Reply with both paths, a two-to-three-line summary, and the not-checked list
+
+Don't commit the explainer files unless asked.

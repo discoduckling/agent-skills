@@ -31,15 +31,15 @@ Add a new `explaining-diffs` skill that writes a plain-language explainer of a f
 ### Phase 2: Skill and sample
 
 - [x] Task 4: Write the full `explaining-diffs` SKILL.md and re-run the evals (Tier 3 9/9; plugin Δ +0.33)
-- [ ] Task 5: Generate a sample explainer into the vault for review **(gate)**
+- [x] Task 5: Generate a sample explainer into the vault for review **(gate)**
 
 ### Checkpoint B: Sample approved
 
-- [ ] User has reviewed `Diff Explainers/SAMPLE Bulk-order discount/2026-10-14 task-3 Bulk-order discount.{md,html}` and approved the shape (or Task 4 was revised and re-sampled)
+- [x] User has reviewed `Diff Explainers/SAMPLE Bulk-order discount/2026-10-14 task-3 Bulk-order discount.{md,html}` and approved the shape (or Task 4 was revised and re-sampled)
 
 ### Phase 3: Wiring
 
-- [ ] Task 6: `/explain-diff` command (three directories)
+- [x] Task 6: `/explain-diff` command (three directories)
 - [ ] Task 7: `/build` wiring (three directories) and `incremental-implementation` pointer
 - [ ] Task 8: Pre-PR pointer in `git-workflow-and-versioning`
 - [ ] Task 9: Catalog listings in README.md and CLAUDE.md

@@ -14,13 +14,13 @@ Plan and per-task test plans: [`tasks/plan.md`](plan.md). Spec: [`SPEC.md`](../S
 
 ## Phase 2: Skill and sample
 - [x] Task 4: Write the full `explaining-diffs` SKILL.md and re-run the evals (Tier 3 9/9; plugin Δ +0.33)
-- [ ] Task 5: Generate a sample explainer into the vault for review (HARD GATE: stop even under `/build auto`) — sample written 2026-10-14; revised with red/green diff snippets per user feedback; awaiting approval
+- [x] Task 5: Generate a sample explainer into the vault for review (HARD GATE: stop even under `/build auto`) — sample written 2026-10-14; revised with red/green diff snippets per user feedback; approved by user 2026-10-14
 
 ## Checkpoint B: Sample approved
-- [ ] User approved `Diff Explainers/SAMPLE Bulk-order discount/2026-10-14 task-3 Bulk-order discount.{md,html}`
+- [x] User approved `Diff Explainers/SAMPLE Bulk-order discount/2026-10-14 task-3 Bulk-order discount.{md,html}`
 
 ## Phase 3: Wiring
-- [ ] Task 6: `/explain-diff` command (three directories)
+- [x] Task 6: `/explain-diff` command (three directories)
 - [ ] Task 7: `/build` wiring (three directories) and `incremental-implementation` pointer
 - [ ] Task 8: Pre-PR pointer in `git-workflow-and-versioning`
 - [ ] Task 9: Catalog listings in README.md and CLAUDE.md
