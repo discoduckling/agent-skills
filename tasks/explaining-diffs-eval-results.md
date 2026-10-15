@@ -86,3 +86,7 @@ The user asked for the task's plan steps and test plan in a section collapsed by
 | After, final | + "for tests, name the requirement each test guards" | **11/11** | ✓ `<details>` without `open`, `[!info]-` callout, every step ran or not run, step 5 "ran, differs" |
 
 Plugin eval on the final skill, two back-to-back runs of `fires`: with 0/3, then 2/3; without 0/3 both times. Pooled that's **2/6 vs 0/6**. `stays-quiet` 6/6. Three runs per arm is noisy, so read the pooled numbers. Cost $2.77.
+
+## Revision: frontmatter and ticket-folder naming
+
+The skill's Markdown template gained optional frontmatter (`ticket`, `kind`, `task`, `branch`, `commit`, `date`), and the file name now follows the naming scheme in the user's instructions when they give one. Tier 3 regression: **11/11**. No eval expectation covers the frontmatter, because it's optional.

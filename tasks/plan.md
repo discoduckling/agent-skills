@@ -35,7 +35,7 @@ Add a new `explaining-diffs` skill that writes a plain-language explainer of a f
 
 ### Checkpoint B: Sample approved
 
-- [ ] User has reviewed `Diff Explainers/2026-10-14-explaining-diffs-sample.{md,html}` and approved the shape (or Task 4 was revised and re-sampled)
+- [ ] User has reviewed `Diff Explainers/SAMPLE Bulk-order discount/2026-10-14 task-3 Bulk-order discount.{md,html}` and approved the shape (or Task 4 was revised and re-sampled)
 
 ### Phase 3: Wiring
 
@@ -297,14 +297,14 @@ Reference `git-workflow-and-versioning` "Change Summaries" rather than restating
 
 ## Task 11: Point the user's `~/.claude/CLAUDE.md` at the vault folder (ask first)
 
-**Description:** Show the exact line and get approval, then add it under "Work Tracking": `Diff explainers (.md + .html): /Users/mitaleedesai/Documents/New World Work Notes/Diff Explainers/`. This file is outside the repo and isn't committed.
+**Description:** Show the exact block and get approval, then add it under "Work Tracking". It holds the ticket-folder layout from SPEC.md's user-local configuration: the folder `Diff Explainers/<TICKET-ID> <title>/`, the files `<date> task-<N> <title>` and `<date> PR <title>`, and the ticket-ID lookup order. This file is outside the repo and isn't committed.
 
 **Acceptance criteria:**
 - [ ] The user approved the exact line before the edit, and the line is present
 
 **Test plan:**
-1. `grep -n "Diff Explainers" ~/.claude/CLAUDE.md` → 1 match
-2. Manual (final checkpoint): `/explain-diff` in a scratch repo with no location given → files land in the vault folder
+1. `grep -n "Diff Explainers" ~/.claude/CLAUDE.md` → the block is present, with folder, file and ticket-lookup lines
+2. Manual (final checkpoint): `/explain-diff` on a branch named `mitalee/app-1234-test` → files land in `Diff Explainers/APP-1234 <title>/` with the dated task or PR names
 
 **Dependencies:** Task 5
 

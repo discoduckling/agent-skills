@@ -17,7 +17,7 @@ Plan and per-task test plans: [`tasks/plan.md`](plan.md). Spec: [`SPEC.md`](../S
 - [ ] Task 5: Generate a sample explainer into the vault for review (HARD GATE: stop even under `/build auto`) — sample written 2026-10-14; revised with red/green diff snippets per user feedback; awaiting approval
 
 ## Checkpoint B: Sample approved
-- [ ] User approved `Diff Explainers/2026-10-14-explaining-diffs-sample.{md,html}`
+- [ ] User approved `Diff Explainers/SAMPLE Bulk-order discount/2026-10-14 task-3 Bulk-order discount.{md,html}`
 
 ## Phase 3: Wiring
 - [ ] Task 6: `/explain-diff` command (three directories)

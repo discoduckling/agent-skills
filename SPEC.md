@@ -60,7 +60,12 @@ It has the standard anatomy (Overview, When to Use, Process, Common Rationalizat
   - ≥2 negative triggers with owners (e.g. "review this PR for bugs" → `code-review-and-quality`, "write a commit message" → `git-workflow-and-versioning`);
   - ≥1 execution eval backed by a real fixture under `evals/fixtures/explaining-diffs/`: a small repo with a multi-file change that alters a call path. Its expectations check for line numbers that match the diff, a why per change, a diagram of the changed call path in *both* files (SVG in the HTML, Mermaid in the `.md`), a checks section with real results, and no process narrative.
 
-**User-local configuration (outside this repo):** the user's `~/.claude/CLAUDE.md` gets one line designating the explainer location: `/Users/mitaleedesai/Documents/New World Work Notes/Diff Explainers/`. Both the `.md` note and the `.html` go there. The skill itself stays location-agnostic.
+**User-local configuration (outside this repo):** the user's `~/.claude/CLAUDE.md` gets a short block designating where explainers go and how they're named. Work arrives as Linear tickets in one repo, so explainers are grouped by ticket:
+  - Folder: `/Users/mitaleedesai/Documents/New World Work Notes/Diff Explainers/<TICKET-ID> <ticket title>/`
+  - Files: `<YYYY-MM-DD> task-<N> <task title>.{md,html}` per task, and `<YYYY-MM-DD> PR <short title>.{md,html}` for the whole-branch explainer before a PR
+  - Ticket ID: from the branch name (Linear's `user/app-1234-slug` format), then commit messages or the plan, else ask. The title comes from Linear if connected, else the branch slug. With no ticket, the folder is the branch name.
+
+  The skill itself stays location-agnostic. It only gains optional frontmatter (`ticket`, `kind`, `task`, `branch`, `commit`, `date`) in the `.md`.
 
 **Sample review gate:** once the skill is drafted, and *before* any wiring into `/build` or git-workflow, the agent runs the skill on the eval fixture. It writes the sample `.md` and `.html` to `Diff Explainers/` and stops so the user can review both. Wiring proceeds only after the user approves the sample's shape.
 

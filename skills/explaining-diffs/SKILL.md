@@ -124,11 +124,20 @@ In the HTML, use `<details>` without the `open` attribute. In the Markdown note,
 - Define every technical term the first time it appears, inline: "a *function* (a named step the program can run)". Terms used more than twice also go in a short glossary at the end.
 - No unexplained acronyms. Keep code names in `backticks` so the reader can find them, but don't rely on them to carry the meaning.
 
-**Files:** name both `<YYYY-MM-DD>-<task-id-or-branch>` with `.md` and `.html` extensions. Save them where the user's or project's instructions say. With no instruction, save them to `tasks/explainers/`, and don't commit them unless asked. An explainer committed into the diff it explains makes the diff wrong.
+**Files:** give both the same name with `.md` and `.html` extensions: the naming scheme the user's or project's instructions give, or else `<YYYY-MM-DD>-<task-id-or-branch>`. Save them where those instructions say. With no instruction, save them to `tasks/explainers/`, and don't commit them unless asked. An explainer committed into the diff it explains makes the diff wrong.
 
-The Markdown note:
+The Markdown note starts with frontmatter so notes tools can search and group explainers. Fill in the fields you know, and leave out the rest:
 
 ```markdown
+---
+ticket: <issue or ticket ID>
+kind: task            # task | pr | range
+task: <task number in the plan>
+branch: <branch name>
+commit: <pinned short SHA>
+date: <YYYY-MM-DD>
+---
+
 # <What this change does, in plain words>
 
 <Pin: commit or "uncommitted changes on top of <sha>"> · <date> · [HTML version](<same-name>.html)
