@@ -4,7 +4,7 @@ This guide covers Copilot in VS Code. For the standalone `copilot` command-line 
 
 **What an install actually gives you:** the skills. Each installed skill becomes a slash command named after its frontmatter `name` — `/spec-driven-development`, `/test-driven-development`, and so on. `npx skills add addyosmani/agent-skills` and the manual copy below both install skills only. Neither of those two routes copies this repo's short lifecycle wrappers (`/spec`, `/plan`, `/build`, `/test`, `/review`, `/ship`) — those are Claude Code commands living in `.claude/commands/`. Use the full skill names, or add your own aliases — see [Lifecycle workflows](#lifecycle-workflows).
 
-> **`/spec`, `/plan`, `/build`, `/test`, `/review`, `/code-simplify`, `/webperf` and `/ship` never appear in Copilot.** They are Claude Code commands, and Copilot does not read `.claude/commands/`. Not seeing them after an install is expected, not a missing step. Invoke the skill by its own name instead — `/spec-driven-development` for `/spec`, `/planning-and-task-breakdown` for `/plan`, and so on; the full mapping is in [Lifecycle Workflows](#lifecycle-workflows). On VS Code you can add [short aliases](#optional-short-spec-style-aliases) yourself if you want the short forms.
+> **`/spec`, `/plan`, `/build`, `/test`, `/review`, `/code-simplify`, `/explain-diff`, `/webperf` and `/ship` never appear in Copilot.** They are Claude Code commands, and Copilot does not read `.claude/commands/`. Not seeing them after an install is expected, not a missing step. Invoke the skill by its own name instead — `/spec-driven-development` for `/spec`, `/planning-and-task-breakdown` for `/plan`, and so on; the full mapping is in [Lifecycle Workflows](#lifecycle-workflows). On VS Code you can add [short aliases](#optional-short-spec-style-aliases) yourself if you want the short forms.
 
 ## Setup
 
@@ -97,6 +97,7 @@ Skills are user-invocable by default, so once they're discovered the whole lifec
 | Plan | `/planning-and-task-breakdown` | Produces `tasks/plan.md` and `tasks/todo.md` |
 | Build | `/incremental-implementation` | Pair with `/test-driven-development`; one slice at a time |
 | Verify | `/test-driven-development` | Red-green-refactor, Prove-It for bugs |
+| Verify | `/explaining-diffs` | Plain-language explainer of a finished diff for the person verifying it |
 | Review | `/code-review-and-quality` | Five-axis review |
 | Ship | `/shipping-and-launch` | Launch readiness |
 

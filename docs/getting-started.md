@@ -135,6 +135,7 @@ The `.claude/commands/` directory contains slash commands for Claude Code:
 | `/test` | test-driven-development |
 | `/review` | code-review-and-quality |
 | `/code-simplify` | code-simplification |
+| `/explain-diff` | explaining-diffs |
 | `/ship` | shipping-and-launch |
 | `/webperf` | web-performance-auditor (specialist agent, web apps only) |
 

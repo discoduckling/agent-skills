@@ -24,7 +24,7 @@ Plan and per-task test plans: [`tasks/plan.md`](plan.md). Spec: [`SPEC.md`](../S
 - [x] Task 7: `/build` wiring (three directories) and `incremental-implementation` pointer
 - [x] Task 8: Pre-PR pointer in `git-workflow-and-versioning`
 - [x] Task 9: Catalog listings in README.md and CLAUDE.md
-- [ ] Task 10: Catalog listings in `docs/`
+- [x] Task 10: Catalog listings in `docs/`
 
 ## Phase 4: Local config and release
 - [ ] Task 11: Point `~/.claude/CLAUDE.md` at the vault folder (HARD GATE: ask first, even under `/build auto`)
