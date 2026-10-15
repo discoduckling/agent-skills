@@ -8,12 +8,12 @@ Plan and per-task test plans: [`tasks/plan.md`](plan.md). Spec: [`SPEC.md`](../S
 - [x] Task 3: Plugin eval pair (fires / stays quiet) and baseline run (content 0/3 both arms; quiet 6/6)
 
 ## Checkpoint A: Baseline discriminates
-- [ ] Tier 1 green, Tier 2 rank-1 ≥ 95
-- [ ] Tier 3 baseline fails ≥1 expectation; plugin content grader < 3/3 without the plugin; recorded in `tasks/explaining-diffs-eval-results.md`
+- [x] Tier 1 green, Tier 2 rank-1 ≥ 95
+- [x] Tier 3 baseline fails ≥1 expectation; plugin content grader < 3/3 without the plugin; recorded in `tasks/explaining-diffs-eval-results.md`
 - [ ] Human glanced at the expectations and baseline
 
 ## Phase 2: Skill and sample
-- [ ] Task 4: Write the full `explaining-diffs` SKILL.md and re-run the evals
+- [x] Task 4: Write the full `explaining-diffs` SKILL.md and re-run the evals (Tier 3 9/9; plugin Δ +0.33)
 - [ ] Task 5: Generate a sample explainer into the vault for review (HARD GATE: stop even under `/build auto`)
 
 ## Checkpoint B: Sample approved

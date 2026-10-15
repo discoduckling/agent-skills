@@ -24,13 +24,13 @@ Add a new `explaining-diffs` skill that writes a plain-language explainer of a f
 
 ### Checkpoint A: Baseline discriminates
 
-- [ ] Tier 1 green, and Tier 2 rank-1 ≥ 95
-- [ ] The Tier 3 baseline fails ≥1 expectation, the plugin `explainer-content` grader fails in the without-plugin arm, and both are recorded in `tasks/explaining-diffs-eval-results.md`
+- [x] Tier 1 green, and Tier 2 rank-1 ≥ 95
+- [x] The Tier 3 baseline fails ≥1 expectation, the plugin `explainer-content` grader fails in the without-plugin arm, and both are recorded in `tasks/explaining-diffs-eval-results.md`
 - [ ] Human glances at the expectations and baseline before the skill is written
 
 ### Phase 2: Skill and sample
 
-- [ ] Task 4: Write the full `explaining-diffs` SKILL.md and re-run the evals
+- [x] Task 4: Write the full `explaining-diffs` SKILL.md and re-run the evals (Tier 3 9/9; plugin Δ +0.33)
 - [ ] Task 5: Generate a sample explainer into the vault for review **(gate)**
 
 ### Checkpoint B: Sample approved

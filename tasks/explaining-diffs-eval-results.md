@@ -32,3 +32,32 @@ Overall: **3/9 (33%)**
 | `explaining-diffs-stays-quiet-on-review` | without plugin | — | `not-fired` 3/3 | 1.00 |
 
 Δ 0.00 on both · cost $1.44 (plus $0.25 for the smoke run). Even the skeleton's description makes the skill fire every time, so routing works. Without the process, the content still fails. The stays-quiet case confirms a review request with a diff doesn't pull in `explaining-diffs`.
+
+## After (full skill)
+
+Same commands as the baseline. **One eval file changed after the baseline:** criterion 3 of `evals/plugin/explaining-diffs-fires/graders/explainer-content.md`. It described a chain `checkout -> applyDiscount -> addTax`, but `applyDiscount` never calls `addTax`, so correctly drawn call graphs were failing. It now reads "`checkout` now calls the new `applyDiscount` and then passes the discounted amount to `addTax`". Every plugin run re-runs the without-plugin arm, which stayed at 0/3 under the corrected wording. No Tier 3 expectation changed.
+
+### Tier 3
+
+Overall: **9/9 (100%)**, up from 3/9. It was 9/9 on the first full draft and again on the final skill. Executor `claude-opus-5-5[1m]`.
+
+### Plugin eval (final skill)
+
+| Case | Arm | skill-fired | Scored grader | Score |
+|---|---|---|---|---|
+| `explaining-diffs-fires` | with plugin | 3/3 | `explainer-content` 1/3 | 0.33 |
+| `explaining-diffs-fires` | without plugin | — | `explainer-content` 0/3 | 0.00 |
+| `explaining-diffs-stays-quiet-on-review` | both arms | — | `not-fired` 6/6 | 1.00 |
+
+Δ **+0.33** on `fires` · cost $1.57.
+
+### Skill changes driven by the plugin eval
+
+Intermediate runs were with 0/3 · without 0/3 at each step, and the judge's reasons came from re-grading one reply by hand with `claude -p`:
+
+1. **No-file fallback.** Sessions that can't write files left out the diagram. The skill now says to put the full Markdown note in the reply.
+2. **`classDef` required.** One reply styled its diagram with label text only.
+3. **Arrows mean "calls".** Replies drew a step pipeline (`subtotal → applyDiscount → addTax`), which read as a call graph and was wrong. The skill's own example had the same flaw, and it's fixed too.
+4. **Label changed calls.** The `checkout → addTax` arrow looked unchanged, though its input changed. That's the point of the fix, so new calls and changed-input calls are now labelled.
+
+The two with-plugin runs that still fail passed when re-graded by hand without the diff, so the eval's judge (which does see the diff) may be catching line-number detail. They're left as failures, and the skill wasn't tuned further to the grader.
